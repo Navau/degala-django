@@ -25,18 +25,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-rj&s=+dn0p_y#7!bdipfbnrw9$0k=5ivjpa!p$zlcg!n$4-fyv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# ALLOWED_HOSTS = [
-#     '127.0.0.1',
-#     'localhost'
-# ]
-
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*'
+    '127.0.0.1',
+    'localhost'
 ]
+
+# DEBUG = False
+
+# ALLOWED_HOSTS = [
+#     '*'
+# ]
 
 # Application definition
 
@@ -50,7 +50,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     "corsheaders",
+    'django_filters',
     'users',
+    'categories',
+    'products',
     "demand"
 ]
 
@@ -133,6 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -150,18 +155,18 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=120)
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP = os.path.join(BASE_DIR, 'static')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_TMP = os.path.join(BASE_DIR, 'static')
+# STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = '/static/'
 
-os.makedirs(STATIC_TMP, exist_ok=True)
-os.makedirs(STATIC_ROOT, exist_ok=True)
-os.makedirs(STATIC_DIR, exist_ok=True)
+# os.makedirs(STATIC_TMP, exist_ok=True)
+# os.makedirs(STATIC_ROOT, exist_ok=True)
+# os.makedirs(STATIC_DIR, exist_ok=True)
 
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

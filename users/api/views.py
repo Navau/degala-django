@@ -19,6 +19,7 @@ class UserApiViewSet(ModelViewSet):
     # PARA ENCRIPTAR LA CONTRASEÑA AL CREAR EL USUARIO
     def create(self, request, *args, **kwargs):
         request.data['password'] = make_password(request.data['password'])
+        # print("REQUEST_DATA", request.data)
         return super().create(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):

@@ -1,0 +1,1 @@
+web: gunicorn degala.wsgi --log-file -

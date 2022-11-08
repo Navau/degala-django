@@ -11,8 +11,9 @@ GenreProductEnum = (
 class Product(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='products')
-    price = models.DecimalField(max_digits=6, decimal_places=2)  # 9999.99
+    price = models.DecimalField(max_digits=7, decimal_places=2)  # 99999.99
     color = models.CharField(max_length=255, null=True, blank=True)
+    stock = models.IntegerField(default=0)
     stock = models.IntegerField(default=0)
     genre = models.CharField(
         default="undefined", max_length=255, choices=GenreProductEnum)

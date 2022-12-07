@@ -30,6 +30,7 @@ from products.api.router import router_product
 from fabrics.api.router import router_fabric
 from sales.api.router import router_sale
 from salesDetails.api.router import router_saleDetail
+from sales2.api.router import router_sale2
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -58,6 +59,7 @@ urlpatterns = [
     path('api/', include(router_fabric.urls)),
     path('api/', include(router_sale.urls)),
     path('api/', include(router_saleDetail.urls)),
+    path('api/', include(router_sale2.urls)),
 ]
 # ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

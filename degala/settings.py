@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'fabrics',
     'sales',
     'salesDetails',
+    'sales2',
 ]
 
 MIDDLEWARE = [

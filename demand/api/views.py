@@ -29,7 +29,6 @@ class DemandApiViewSet(ModelViewSet):
 
 class PredictMonthView(APIView):
     def get(self, request, month):
-        print("REQUEST_TEST", month)
         # serializer = DemandSerializer(request.demand)
         df = pd.read_csv(os.path.join(os.path.dirname(
             os.path.dirname(__file__)), 'dataset/dataset-degala-mes-2.csv'))

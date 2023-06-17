@@ -31,35 +31,40 @@ from fabrics.api.router import router_fabric
 from sales.api.router import router_sale
 from salesDetails.api.router import router_saleDetail
 from sales2.api.router import router_sale2
+from dataset.api.routers import router_dataset
 
 schema_view = get_schema_view(
     openapi.Info(
         title="DeGala API DOCS",
-        default_version='v1',
+        default_version="v1",
         description="Documentacion de la api degala",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contactojosegutierrez@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
-    public=True
+    public=True,
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('docs/', schema_view.with_ui('swagger',
-         cache_timeout=0), name='schema_swagger_ui'),
-    path('redocs/', schema_view.with_ui('redoc',
-                                        cache_timeout=0), name='schema-redoc'),
-    path('api/', include('users.api.router')),
-    path('api/', include('demand.api.router')),
-    path('api/', include(router_user.urls)),
-    path('api/', include(router_demand.urls)),
-    path('api/', include(router_category.urls)),
-    path('api/', include(router_product.urls)),
-    path('api/', include(router_fabric.urls)),
-    path('api/', include(router_sale.urls)),
-    path('api/', include(router_saleDetail.urls)),
-    path('api/', include(router_sale2.urls)),
+    path("admin/", admin.site.urls),
+    path(
+        "docs/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema_swagger_ui",
+    ),
+    path("redocs/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    path("api/", include("users.api.router")),
+    path("api/", include("demand.api.router")),
+    path("api/", include("dataset.api.routers")),
+    path("api/", include(router_user.urls)),
+    path("api/", include(router_demand.urls)),
+    path("api/", include(router_category.urls)),
+    path("api/", include(router_product.urls)),
+    path("api/", include(router_fabric.urls)),
+    path("api/", include(router_sale.urls)),
+    path("api/", include(router_saleDetail.urls)),
+    path("api/", include(router_sale2.urls)),
+    path("api/", include(router_dataset.urls)),
 ]
 # ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

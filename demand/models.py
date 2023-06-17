@@ -2,10 +2,9 @@ from django.db import models
 
 
 class Demand(models.Model):
-    mes = models.CharField(max_length=255)
-    ventas = models.IntegerField()
-    pred_value = models.IntegerField()
-    real_value = models.IntegerField()
+    date = models.CharField(max_length=255, null=True)
+    sales = models.IntegerField(default=-1)
+    quantity = models.IntegerField(default=-1)
 
     def __str__(self):
-        return self.pred_value
+        return self.date

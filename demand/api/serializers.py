@@ -6,4 +6,4 @@ from demand.models import Demand
 class DemandSerializer(ModelSerializer):
     class Meta:
         model = Demand
-        fields = ['mes', 'ventas', 'pred_value', 'real_value']
+        fields = ["date", "sales", "quantity"]

@@ -27,10 +27,7 @@ SECRET_KEY = "django-insecure-rj&s=+dn0p_y#7!bdipfbnrw9$0k=5ivjpa!p$zlcg!n$4-fyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost'
-]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 # DEBUG = False
 
@@ -47,18 +44,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-    'drf_yasg',
+    "rest_framework",
+    "drf_yasg",
     "corsheaders",
-    'django_filters',
-    'users',
-    'categories',
-    'products',
-    'demand',
-    'fabrics',
-    'sales',
-    'salesDetails',
-    'sales2',
+    "django_filters",
+    "users",
+    "categories",
+    "products",
+    "demand",
+    "fabrics",
+    "sales",
+    "salesDetails",
+    "sales2",
+    "dataset",
 ]
 
 MIDDLEWARE = [
@@ -70,7 +68,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "degala.urls"
@@ -104,11 +102,11 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        'NAME': 'degala',
-        'USER': 'postgres',
-        'PASSWORD': 'navau',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        "NAME": "degala",
+        "USER": "postgres",
+        "PASSWORD": "navau",
+        "HOST": "localhost",
+        "PORT": 5432,
     }
 }
 
@@ -120,14 +118,20 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
@@ -148,8 +152,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-MEDIA_URL = '/uploads/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = "/uploads/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -157,15 +161,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # USERS
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=120)
-}
+SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=120)}
 
 # # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # # STATIC_TMP = os.path.join(BASE_DIR, 'static')

@@ -19,7 +19,7 @@ class DataSetViewSet(ModelViewSet):
     serializer_class = DataSetSerializer
     queryset = DataSet.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = {"date": ["gte"], "sales": ["exact"], "quantity": ["exact"]}
+    filterset_fields = {"date": ["range"], "sales": ["exact"], "quantity": ["exact"]}
 
 
 class UploadExcel(APIView):

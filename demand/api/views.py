@@ -429,6 +429,33 @@ class DemandPredictMonthView(APIView):
             return Response([])
 
 
+class DemandPredictYearView(APIView):
+    def get(self, request):
+        from_date_param = request.query_params.get(
+            "from_date", None
+        )  # FORMATO: YYYY-MM
+        to_date_param = request.query_params.get("to_date", None)  # FORMATO: YYYY-MM
+        from_df = Demand.objects.filter(date=from_date_param)
+        to_df = Demand.objects.filter(date=to_date_param)
+        if len(from_df) == 0:
+            response_data = predict_demand_by_months_from_dataset_or_demand_with_model(
+                from_date_param, to_date_param
+            )
+            return Response(response_data)
+        elif len(from_df) > 0 and len(to_df) == 0:
+            response_data = predict_demand_by_months_from_date_with_model(
+                from_date_param, to_date_param
+            )
+            return Response(response_data)
+        elif len(from_df) > 0 and len(to_df) > 0:
+            response_data = predict_demand_by_months_from_date_to_date(
+                from_date_param, to_date_param
+            )
+            return Response(response_data)
+        else:
+            return Response([])
+
+
 def predict_demand_by_months_from_dataset_or_demand_with_model(
     from_date_param, to_date_param
 ):
@@ -480,6 +507,7 @@ def predict_demand_by_months_from_dataset_or_demand_with_model(
         if date > last_date_demand:
             sales = row["pred_value_sales"]
             quantity = row["pred_value_quantity"]
+            # Demand.objects.delete(date=date)
             Demand.objects.create(date=date, sales=sales, quantity=quantity)
 
     filtered_demands = Demand.objects.filter(

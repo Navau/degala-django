@@ -2,6 +2,11 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from django.db.models import Q
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from django.contrib.auth.hashers import make_password
 from users.api.serializers import UserSerializer
@@ -15,19 +20,22 @@ class UserApiViewSet(ModelViewSet):
     # Como queremos que nos devuelvan los datos, es como un transformador de datos
     serializer_class = UserSerializer
     queryset = User.objects.all()  # A que modelo tiene que atacar
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ["ci"]
+    search_fields = ["ci", "username", "email", "first_name", "last_name", "is_staff"]
 
     # PARA ENCRIPTAR LA CONTRASEÑA AL CREAR EL USUARIO
     def create(self, request, *args, **kwargs):
-        request.data['password'] = make_password(request.data['password'])
+        request.data["password"] = make_password(request.data["password"])
         # print("REQUEST_DATA", request.data)
         return super().create(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
-        password = request.data['password']
+        password = request.data["password"]
         if password:
-            request.data['password'] = make_password(password)
+            request.data["password"] = make_password(password)
         else:
-            request.data['password'] = request.user.password
+            request.data["password"] = request.user.password
         return super().update(request, *args, **kwargs)
 
 

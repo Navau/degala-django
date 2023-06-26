@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAdminUser
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.response import Response
@@ -15,7 +15,7 @@ from dataset.api.serializers import DataSetSerializer
 
 
 class DataSetViewSet(ModelViewSet):
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminUser]
     serializer_class = DataSetSerializer
     queryset = DataSet.objects.all()
     filter_backends = [DjangoFilterBackend]

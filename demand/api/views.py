@@ -1,4 +1,4 @@
-# from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
@@ -27,7 +27,7 @@ from demand.api.serializers import DemandSerializer
 
 
 class DemandApiViewSet(ModelViewSet):
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminUser]
     serializer_class = DemandSerializer
     queryset = Demand.objects.all()
     filter_backends = [DjangoFilterBackend]
@@ -403,6 +403,7 @@ class PredictView(APIView):
 
 
 class DemandPredictMonthView(APIView):
+    permission_classes = [IsAdminUser]
     def get(self, request):
         from_date_param = request.query_params.get(
             "from_date", None
